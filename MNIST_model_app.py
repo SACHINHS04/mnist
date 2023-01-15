@@ -13,7 +13,10 @@ model.eval()
 
 def predict(image):
     # Preprocess the image
-    image = Image.open(image)
+    with open(image, 'rb') as f:
+    with Image.open(f) as img:
+        image = img.convert("L")
+
     image = image.resize((28,28))
     image = transforms.ToTensor()(image)
     image = image.view(-1, 1, 28, 28)
