@@ -15,6 +15,7 @@ import io
 
 def predict(image):
     image = io.BytesIO(image.read())
+    image.seek(0)
     image = Image.open(image).convert("L")
     image = image.resize((28,28))
     image = transforms.ToTensor()(image)
