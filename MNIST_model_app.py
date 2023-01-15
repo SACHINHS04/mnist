@@ -14,16 +14,16 @@ model.eval()
 def predict(image):
     # Preprocess the image
     image = Image.open(image)
+    image = image.resize((28,28))
     image = transforms.ToTensor()(image)
     image = image.view(-1, 1, 28, 28)
-
-
 
     # Pass the image through the model
     output = model(image)
     _, prediction = torch.max(output, 1)
 
     return prediction
+
 
 st.set_page_config(page_title="MNIST model", page_icon=":guardsman:", layout="wide")
 
