@@ -14,8 +14,8 @@ model.eval()
 def predict(image):
     # Preprocess the image
     with open(image, 'rb') as f:
-    with Image.open(f) as img:
-        image = img.convert("L")
+        with Image.open(f) as img:
+            image = img.convert("L")
 
     image = image.resize((28,28))
     image = transforms.ToTensor()(image)
@@ -23,7 +23,8 @@ def predict(image):
 
     # Pass the image through the model
     output = model(image)
-    prediction = torch.max(output, 1)
+    prediction = torch.argmax(output).item()
+
 
     return prediction
 
