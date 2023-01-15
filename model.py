@@ -9,10 +9,12 @@ class Net(nn.Module):
         super(Net, self).__init__()
         self.fc1 = nn.Linear(28 * 28, 256)
         self.fc2 = nn.Linear(256, 10)
+        self.dropout = nn.Dropout(p=0.5)
 
     def forward(self, x):
         x = x.view(-1, 28 * 28)
         x = torch.relu(self.fc1(x))
+        x = self.dropout(x)
         x = self.fc2(x)
         return x
 
@@ -28,7 +30,7 @@ test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=64, shuffle=F
 
 # Initialize the network and optimizer
 model = Net()
-optimizer = optim.Adam(model.parameters())
+optimizer = optim.Adam(model.parameters(), weight_decay=1e-5)
 
 # Define the loss function
 criterion = nn.CrossEntropyLoss()
@@ -59,4 +61,4 @@ with torch.no_grad():
     print(f'Accuracy: {100 * correct / total}')
 
 # Save the model's state dictionary
-torch.save(model.state_dict(), 'mnist_model.pth')
+torch.save(model.state_dict(), 'mnist_model_final.pth')
