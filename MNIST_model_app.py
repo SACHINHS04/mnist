@@ -1,6 +1,8 @@
 import streamlit as st
 import torch
 from PIL import Image
+import torchvision.transforms as transforms
+
 
 # Load the trained model's state dictionary
 from model import Net
