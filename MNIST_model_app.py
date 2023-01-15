@@ -15,7 +15,8 @@ def predict(image):
     # Preprocess the image
     image = Image.open(image)
     image = transforms.ToTensor()(image)
-    image = image.view(-1, 28 * 28)
+    image = image.view(-1, 1, 28, 28)
+
 
     # Pass the image through the model
     output = model(image)
