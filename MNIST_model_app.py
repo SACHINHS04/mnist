@@ -3,6 +3,8 @@ import torch
 from PIL import Image
 
 # Load the trained model's state dictionary
+from model import Net
+
 model = Net()
 model.load_state_dict(torch.load('mnist_model.pth'))
 model.eval()
