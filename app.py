@@ -7,7 +7,7 @@ import torchvision.transforms as transforms
 from model import Net
 
 model = Net()
-model.load_state_dict(torch.load('mnist_model.pth'))
+model.load_state_dict(torch.load('mnist_model_final.pth'))
 model.eval()
 
 def predict(image):
