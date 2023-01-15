@@ -18,6 +18,7 @@ def predict(image):
     image = image.view(-1, 1, 28, 28)
 
 
+
     # Pass the image through the model
     output = model(image)
     _, prediction = torch.max(output, 1)
